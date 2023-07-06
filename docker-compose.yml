@@ -1,0 +1,36 @@
+version: "3"
+services:       
+  db:
+    build: ./dbMock    
+    networks:
+      - dockerNetwork
+    environment:      
+      - MYSQL_DATABASE=blog
+      - MYSQL_ROOT_PASSWORD=password
+
+  backend:
+    build: ./springBackend
+    ports:
+      - "8080:8080"   
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/blog?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update 
+    networks:
+      - dockerNetwork
+    depends_on:
+      - db
+         
+  frontend:
+    build: ./simple-frontend
+    ports:
+      - "3000:3000"    
+    networks:
+      - dockerNetwork
+    
+         
+networks:
+  dockerNetwork:
+    name: dockerNetwork
+    
