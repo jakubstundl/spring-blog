@@ -11,8 +11,8 @@
 ## Endpoints
 - **GET /api/posts**: Retrieve all posts.
 - **POST /api/post**: Create a new post by sending a request body with the post data.
-- **DELETE /api/post**: Delete a post by sending a request body with the post ID and the deletion code.
-- **PUT /api/post**: Update a post by sending a request body with the post ID and any updated data.
+- **DELETE /api/post**: Delete a post by sending a request body with the post ID and the deletion/update code.
+- **PUT /api/post**: Update a post by sending a request body with the post ID, the deletion/update code and any updated data.
 
 Note: The update method has not been implemented in the frontend.
 
